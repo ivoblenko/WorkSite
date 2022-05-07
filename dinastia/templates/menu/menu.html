@@ -1,0 +1,22 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+    <div class="main_menu row">
+        <div class="col">
+
+                <button class="menu_button row" onclick="document.location='{% url 'inspections_menu' %}'">
+                    Осмотры
+                </button>
+                <br>
+                <button class="menu_button row">
+                    Редактировать шаблоны осмотров
+                </button>
+                <br>
+                <br>
+                <br>
+                <button class="menu_button row">
+                    Выход
+                </button>
+        </div>
+    </div>
+{% endblock %}

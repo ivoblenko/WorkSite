@@ -1,0 +1,14 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    Осмотр {{ inspection_type }}
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'inspections_menu' %}">Назад</a>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock %}
