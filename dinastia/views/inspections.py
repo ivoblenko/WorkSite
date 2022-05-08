@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+
 from ..models.inspection_templates import InspectionsTemplates
 from ..models.inspections import Inspections
 from ..models.patients import Patients
 from ..forms.inspection_form import InspectionForm
 from django.views.generic.edit import UpdateView
 from ajax_datatable.views import AjaxDatatableView
-from django.contrib.auth.models import Permission
 
 
 def menu(request):
@@ -18,7 +19,8 @@ def inspection_new(request, department_id):
         if form.is_valid():
             inspection = form.save(commit=False)
             patient = Patients(surname=request.POST.get('surname'), name=request.POST.get('name'),
-                               patronymic=request.POST.get('patronymic'))
+                               patronymic=request.POST.get('patronymic'), phone=request.POST.get('phone'),
+                               dob=request.POST.get('dob'))
             patient.save()
             inspection.patient = patient
             inspection.save()
@@ -73,19 +75,23 @@ def inspection_table(request):
     return render(request, 'inspections/table.html')
 
 
-class PermissionAjaxDatatableView(AjaxDatatableView):
-
+class InspectionAjaxDatatableView(AjaxDatatableView):
     model = Inspections
     title = 'Осмотры'
     initial_order = [["date", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
-    search_values_separator = '+'
+    search_values_separator = False
+    show_column_filters = False
 
     column_defs = [
-        AjaxDatatableView.render_row_tools_column_def(),
-        {'name': 'patient', 'visible': False, },
+        {'name': 'patient', 'visible': True, },
         {'name': 'staff', 'visible': True, },
         {'name': 'date', 'visible': True, },
-        # {'name': 'app_label', 'foreign_field': 'content_type__app_label', 'visible': True, },
-        # {'name': 'model', 'foreign_field': 'content_type__model', 'visible': True, },
     ]
+
+    def customize_row(self, row, obj):
+        row['patient'] = '<a href="%s">%s</a>' % (
+            reverse('inspection_update', args=(obj.id,)),
+            obj.patient
+        )
+        return

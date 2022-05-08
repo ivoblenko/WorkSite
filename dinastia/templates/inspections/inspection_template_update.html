@@ -12,10 +12,23 @@
 {% block content %}
     {{ form.media }}
 
-    <a href="{% url 'inspection_templates' %}">Назад</a>
+    <button class="button" onclick="document.location='{% url 'main_menu' %}'">Назад</button>
     <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
+
+        <h5>{{ form.complaints.label }}</h5>
+        {{ form.complaints }}
+
+        <h5>{{ form.anamnesis.label }}</h5>
+        {{ form.anamnesis }}
+
+        <h5>{{ form.diagnosis.label }}</h5>
+        {{ form.diagnosis }}
+
+        <h5>{{ form.additionally.label }}</h5>
+        {{ form.additionally }}
+
+        <br>
+        <input align="center" class="button submit_button" type="submit" value="Сохранить">
     </form>
 
 {% endblock %}

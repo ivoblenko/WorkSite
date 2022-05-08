@@ -11,5 +11,5 @@ urlpatterns = [
     path('inspections/templates', inspections.inspection_templates, name='inspection_templates'),
     path('inspections/templates/update/<int:pk>', inspections.InspectionTemplateUpdate.as_view(), name='inspection_template_update'),
     path('inspections/table', inspections.inspection_table, name='inspections_table'),
-    path('inspections/table/get', inspections.PermissionAjaxDatatableView.as_view(), name='inspections_table_get'),
+    path('inspections/table/get', inspections.InspectionAjaxDatatableView.as_view(), name='inspections_table_get'),
 ]

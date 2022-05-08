@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'dinastia.apps.DinastiaConfig',
     'tinymce',
     'ajax_datatable',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

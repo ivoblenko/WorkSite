@@ -1,3 +1,14 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+    text-align: center;
+    margin: 20px !important;
+}
+
 body {
     background: white;
     width: 100%;
@@ -29,7 +40,7 @@ header {
 }
 
 header h2 {
-    margin: auto;
+    margin: auto !important;
     color: white;
 }
 
@@ -59,7 +70,24 @@ header h2 {
     justify-content: center;
 }
 
-.menu_button:hover {
+.button {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    background: #fe890a;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.submit_button {
+    margin: auto;
+    display: flex;
+
+}
+
+.menu_button:hover, .button:hover {
     background: #ffb96e;
 }
 
@@ -69,4 +97,96 @@ header h2 {
 
 .menu {
     margin-top: 10px !important;
+}
+
+.text-field {
+    margin-bottom: 1rem;
+}
+
+.text-field label {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+
+.text-field input {
+    display: block;
+    width: 200px;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+.text-field input::placeholder {
+    color: #212529;
+    opacity: 0.4;
+}
+
+.text-field input:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #bdbdbd;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.text-field input:disabled,
+.text-field input[readonly] {
+    background-color: #f5f5f5;
+    opacity: 1;
+}
+
+/* with floating label */
+.text-field_floating-2 {
+    position: relative;
+    margin: auto;
+    width: fit-content;
+}
+
+.text-field_floating-2 input {
+    height: calc(2.5rem + 2px);
+    padding: 0.5rem 0.75rem;
+}
+
+.text-field_floating-2 label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    display: flex;
+    transform: translateY(-50%);
+    pointer-events: none;
+    border: none;
+    background-color: #fff;
+    color: #757575;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    transition: top 0.1s ease-in-out, scale 0.1s ease-in-out;
+    margin: auto;
+}
+
+.text-field_floating-2 input::-moz-placeholder {
+    color: transparent;
+}
+
+.text-field_floating-2 input::placeholder {
+    color: transparent;
+}
+
+.text-field_floating-2 input:focus ~ label,
+.text-field_floating-2 input:not(:placeholder-shown) ~ label {
+    top: 0;
+    transform: translateY(-50%) scale(0.75);
 }

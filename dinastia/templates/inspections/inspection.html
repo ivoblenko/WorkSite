@@ -5,12 +5,83 @@
     Осмотр {{ inspection_type }}
 {% endblock %}
 
+{% block js %}
+    {{ block.super }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
+            integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"
+          integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous"/>
+{% endblock %}
+
 {% block content %}
     {{ form.media }}
-    <a href="{% url 'inspections_menu' %}">Назад</a>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
+    <button class="button" onclick="document.location='{% url 'inspections_menu' %}'">Назад</button>
+    <form method="post">
+        {% csrf_token %}
+
+        {% block patient %}
+            <div class="row" style="justify-content: center">
+                <h5>Пациент</h5>
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2">
+                        {{ form.surname }}
+                        <label for="{{ form.surname.auto_id }}">{{ form.surname.label }}</label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.name }}
+                        <label for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.patronymic }}
+                        <label for="{{ form.patronymic.auto_id }}">{{ form.patronymic.label }}</label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.dob }}
+                        <label for="{{ form.dob.auto_id }}">{{ form.dob.label }}</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.phone }}
+                        <label for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        <h5>{{ form.complaints.label }}</h5>
+        {{ form.complaints }}
+
+        <h5>{{ form.anamnesis.label }}</h5>
+        {{ form.anamnesis }}
+
+        <h5>{{ form.diagnosis.label }}</h5>
+        {{ form.diagnosis }}
+
+        <h5>{{ form.additionally.label }}</h5>
+        {{ form.additionally }}
+
+        <br>
+        <input align="center" class="button submit_button" type="submit" value="Сохранить">
     </form>
 
 {% endblock %}

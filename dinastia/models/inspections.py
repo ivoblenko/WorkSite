@@ -20,6 +20,3 @@ class Inspections(models.Model):
         return 'Осмтор пациента' + self.patient.short_fio + " от " + self.date
 
 
-    @classmethod
-    def get_for_table(cls):
-        return cls.objects.values('patient', 'staff', 'date', 'id')

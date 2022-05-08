@@ -1,12 +1,11 @@
 from django.db import models
 
-
 class Patients(models.Model):
     surname = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     patronymic = models.CharField(max_length=200)
-    phone = models.IntegerField(null=True)
-    dob = models.DateField(null=True)
+    phone = models.IntegerField(null=True, blank=True)
+    dob = models.DateField(null=True, blank=True)
 
     class Meta:
         app_label = 'dinastia'
