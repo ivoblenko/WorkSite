@@ -1,0 +1,20 @@
+{% extends '../base/base.html' %}
+
+{% block header %}
+    Редактирование шаблонов
+{% endblock %}
+
+{% block content %}
+    {% for temp in templates %}
+        <button class="menu_button row" onclick="document.location='{% url 'inspection_template_update' temp.id %}'">
+            {{ temp.template_name }}
+        </button>
+        <br>
+    {% endfor %}
+    <br>
+    <br>
+    <button class="menu_button row" onclick="document.location='{% url 'main_menu' %}'">
+        Назад
+    </button>
+
+{% endblock %}

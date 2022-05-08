@@ -4,19 +4,25 @@
     <div class="main_menu row">
         <div class="col">
 
-                <button class="menu_button row" onclick="document.location='{% url 'inspections_menu' %}'">
-                    Осмотры
-                </button>
-                <br>
-                <button class="menu_button row">
-                    Редактировать шаблоны осмотров
-                </button>
-                <br>
-                <br>
-                <br>
-                <button class="menu_button row">
-                    Выход
-                </button>
+            <button class="menu_button row" onclick="document.location='{% url 'inspections_menu' %}'">
+                Новый осмотр
+            </button>
+            <br>
+
+            <button class="menu_button row" onclick="document.location='{% url 'inspections_table' %}'">
+                Осмотры
+            </button>
+            <br>
+
+            <button class="menu_button row" onclick="document.location='{% url 'inspection_templates' %}'">
+                Редактировать шаблоны осмотров
+            </button>
+            <br>
+            <br>
+            <br>
+            <button class="menu_button row">
+                Выход
+            </button>
         </div>
     </div>
 {% endblock %}

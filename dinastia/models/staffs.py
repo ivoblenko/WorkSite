@@ -18,7 +18,7 @@ class Staffs(models.Model):
         app_label = 'dinastia'
 
     def __str__(self):
-        return self.surname + " " + self.name + " " + self.patronymic
+        return self.surname + " " + self.name[0] + " " + self.patronymic[0]
 
     def get_short_fio(self):
         return self.surname + " " + self.name[0] + " " + self.patronymic[0]

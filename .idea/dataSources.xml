@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MySQL - jdbc:mysql:///Applications/MAMP/tmp/mysql/mysql.sock" uuid="9e9187ef-8729-489d-bc06-37039a7b8be1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql:///Applications/MAMP/tmp/mysql/mysql.sock</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -1,10 +1,12 @@
 {% extends '../base/base.html' %}
 
+
 {% block header %}
     Осмотр {{ inspection_type }}
 {% endblock %}
 
 {% block content %}
+    {{ form.media }}
     <a href="{% url 'inspections_menu' %}">Назад</a>
     <form method="post">{% csrf_token %}
         {{ form.as_p }}
