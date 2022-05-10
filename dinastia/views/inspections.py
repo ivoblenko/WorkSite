@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.forms import inlineformset_factory
 
 from ..models.inspection_templates import InspectionsTemplates
 from ..models.inspections import Inspections
@@ -16,11 +17,15 @@ def menu(request):
 def inspection_new(request, department_id):
     if request.method == "POST":
         form = InspectionForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
             inspection = form.save(commit=False)
-            patient = Patients(surname=request.POST.get('surname'), name=request.POST.get('name'),
-                               patronymic=request.POST.get('patronymic'), phone=request.POST.get('phone'),
-                               dob=request.POST.get('dob'))
+            patient = Patients(
+                surname=request.POST.get('surname'),
+                name=request.POST.get('name'),
+                patronymic=request.POST.get('patronymic'),
+                phone=(request.POST.get('phone') != '') if request.POST.get('phone') else None,
+                dob=(request.POST.get('dob') != '') if request.POST.get('dob') else None)
             patient.save()
             inspection.patient = patient
             inspection.save()
@@ -37,27 +42,54 @@ def inspection_new(request, department_id):
 
     return render(request, 'inspections/inspection.html', {'form': form})
 
-
-def inspection_update(request, inspection_id):
+#TODO: переписать способ сохранения, поискать как сохранять связные модели
+def inspection_update(request, pk):
     if request.method == "POST":
         form = InspectionForm(request.POST)
         if form.is_valid():
-            inspection = form.save()
-            patient = Patients(surname=inspection.surname, name=inspection.name, patronymic=inspection.patronymic)
-            patient.save()
-            inspection.patient = patient.id
-            inspection.save()
+            inspection = get_object_or_404(Inspections, pk=pk)
+
+            data_from_form = form.save(commit=False)
+            inspection.complaints = data_from_form.complaints
+            inspection.anamnesis = data_from_form.anamnesis
+            inspection.additionally = data_from_form.additionally
+            inspection.diagnosis = data_from_form.diagnosis
+            inspection.patient.surname = request.POST.get('surname')
+            inspection.patient.name = request.POST.get('name')
+            inspection.patient.patronymic = request.POST.get('patronymic')
+            inspection.patient.dob = (request.POST.get('dob') != '') if request.POST.get('dob') else None
+            inspection.patient.phone = (request.POST.get('phone') != '') if request.POST.get('phone') else None
+            inspection.save(force_update=True)
+            inspection.patient.save(force_update=True)
+
             return redirect('inspection_update', pk=inspection.pk)
     else:
-        instance = get_object_or_404(Inspections, id=inspection_id)
-        form = InspectionForm(instance=instance)
+        inspection = get_object_or_404(Inspections, id=pk)
+
+        form = InspectionForm(data={
+            'surname': inspection.patient.surname,
+            'name': inspection.patient.name,
+            'patronymic': inspection.patient.patronymic,
+            'dob': inspection.patient.dob,
+            'phone': inspection.patient.phone,
+            'complaints': inspection.complaints,
+            'anamnesis': inspection.anamnesis,
+            'additionally': inspection.additionally,
+            'diagnosis': inspection.diagnosis
+        })
+
     return render(request, 'inspections/inspection.html', {'form': form})
 
 
-class InspectionUpdate(UpdateView):
-    model = Inspections
-    fields = ['patient', 'complaints', 'anamnesis', 'diagnosis', 'additionally']
-    template_name = 'inspections/inspection.html'
+# class InspectionUpdateView(UpdateView):
+#     model = Inspections
+#     fields = ['patient', 'complaints', 'anamnesis', 'diagnosis', 'additionally']
+#     template_name = 'inspections/inspection.html'
+#     child_fields = '__all__'
+#
+#     # def get_context_data(self, **kwargs):
+#     #     context = super(InspectionUpdateView, self).get_context_data(**kwargs)
+#     #     context['surname'] =
 
 
 def inspection_templates(request):
@@ -65,7 +97,7 @@ def inspection_templates(request):
     return render(request, 'inspections/inspection_templates.html', {'templates': templates})
 
 
-class InspectionTemplateUpdate(UpdateView):
+class InspectionTemplateUpdateView(UpdateView):
     model = InspectionsTemplates
     fields = ['template_name', 'complaints', 'anamnesis', 'diagnosis', 'additionally']
     template_name = 'inspections/inspection_template_update.html'

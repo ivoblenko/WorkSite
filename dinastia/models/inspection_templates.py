@@ -7,7 +7,7 @@ from tinymce import models as tinymce_models
 
 class InspectionsTemplates(models.Model):
     template_name = models.CharField('Название', max_length=200)
-    department = models.ForeignKey(Departments, on_delete=models.CASCADE, unique=True, )
+    department = models.OneToOneField(Departments, on_delete=models.CASCADE)
     complaints = tinymce_models.HTMLField('Жалобы', null=True, blank=True)
     anamnesis = tinymce_models.HTMLField('Анамнез', null=True, blank=True)
     diagnosis = tinymce_models.HTMLField('Диагноз', null=True, blank=True)

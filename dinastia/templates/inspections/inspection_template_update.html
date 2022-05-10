@@ -3,16 +3,16 @@
 
 {% block header %}
     {% if form.template_name.value == "" %}
-        Осмотр
+        Редактирование шаблона
     {% else %}
-        {{ form.template_name.value }}
+        Редактирование шаблона "{{ form.template_name.value|lower }}"
     {% endif %}
 {% endblock %}
 
 {% block content %}
     {{ form.media }}
 
-    <button class="button" onclick="document.location='{% url 'main_menu' %}'">Назад</button>
+    <button class="button" onclick="document.location='{% url 'inspection_templates' %}'">Назад</button>
     <form method="post">{% csrf_token %}
 
         <h5>{{ form.complaints.label }}</h5>

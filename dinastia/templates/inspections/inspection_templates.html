@@ -7,7 +7,7 @@
 {% block content %}
     {% for temp in templates %}
         <button class="menu_button row" onclick="document.location='{% url 'inspection_template_update' temp.id %}'">
-            {{ temp.template_name }}
+            Шаблон "{{ temp.template_name|lower }}"
         </button>
         <br>
     {% endfor %}
