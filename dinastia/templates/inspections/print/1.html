@@ -1,0 +1,38 @@
+{% extends 'base/print.html' %}
+
+
+{% block header %}
+    <h3 align="center"><u>Осмотр</u></h3>
+    <h5>врача-невролога</h5>
+    <h5>(первичный/повторный)</h5>
+{% endblock %}
+
+{% block text %}
+    <p>
+        Дата проведения: {{ inspection.date|date }}
+    </p>
+    <p>
+        Пациент: {{ inspection.patient.short_fio }}
+    </p>
+    <p>
+        <b>ЖАЛОБЫ:</b> {{ inpection.complaints }}
+    </p>
+    <p>
+        <b>АНАМНЕЗ:</b> {{ inspection.anamnesis }}
+    </p>
+    <p>
+        {{ inspection.additionaly }}
+    </p>
+    <p>
+        <b>{{ inspection.additionaly }}</b>
+    </p>
+    <p>
+        <b>ДИАГНОЗ:</b> {{ inspection.diagnosis }}
+    </p>
+    <table class="signature">
+        <tr>
+            <td>Врач: {{ inspection.staff.short_fio }}</td>
+            <td>Подпись: _______________________</td>
+        </tr>
+    </table>
+{% endblock %}

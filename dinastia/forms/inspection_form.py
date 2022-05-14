@@ -11,8 +11,9 @@ class InspectionForm(forms.ModelForm):
                                widget=forms.NumberInput({'placeholder': 'phone'}), required=False)
     dob = forms.DateField(label='Дата рождения', widget=forms.DateInput({'class': 'datepicker', 'placeholder': 'dob'}),
                           required=False)
+    print = forms.BooleanField(label='Напечатать протокол', required=False)
 
     class Meta:
         model = Inspections
         fields = ['surname', 'complaints', 'anamnesis', 'diagnosis',
-                  'additionally']
+                  'additionally', 'print']

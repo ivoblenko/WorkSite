@@ -9,6 +9,16 @@ h1, h2, h3, h4, h5 {
     margin: 20px !important;
 }
 
+a{
+    color: #0d6efd !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #70a7fa !important;
+}
+
 body {
     background: white;
     width: 100%;
@@ -29,6 +39,10 @@ footer {
 footer p {
     color: white;
     margin: auto;
+}
+
+p {
+    font-size: 16pt;
 }
 
 header {
@@ -84,7 +98,6 @@ header h2 {
 .submit_button {
     margin: auto;
     display: flex;
-
 }
 
 .menu_button:hover, .button:hover {

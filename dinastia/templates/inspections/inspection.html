@@ -14,6 +14,11 @@
             $(".datepicker").datepicker();
         });
     </script>
+    <script>
+        {% if request.session.print %}
+            window.open("{% url 'inspection_print' pk %}")
+        {% endif %}
+    </script>
 {% endblock %}
 
 {% block css %}
@@ -79,7 +84,11 @@
 
         <h5>{{ form.additionally.label }}</h5>
         {{ form.additionally }}
-
+        <br>
+        <p>
+            {{ form.print.label_tag }}
+            {{ form.print }}
+        </p>
         <br>
         <input align="center" class="button submit_button" type="submit" value="Сохранить">
     </form>

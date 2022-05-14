@@ -1,0 +1,91 @@
+@page {
+    size: auto;
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+#source {
+    font-size: 11pt;
+    text-align: justify;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+    align-content: center;
+}
+
+h3 {
+    text-align: center;
+    margin: 0px !important;
+    text-decoration-line: underline;
+    font-size: 16px;
+    font-weight: 700 !important;
+}
+
+h5 {
+    text-align: center;
+    margin: 0px !important;
+    font-weight: 300 !important;
+    font-size: 14pt;
+}
+
+table.signature {
+    width: 100%;
+}
+
+table.signature td {
+    width: 50%;
+}
+
+table.signature td:last-child {
+    text-align: end;
+}
+
+.print_button {
+    width: 200px;
+    height: 75px;
+    text-align: center;
+    background: #fe890a;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    font-size: 16pt;
+}
+
+
+.print_button:hover {
+    background: #ffb96e;
+}
+
+.print_button span {
+    margin: auto;
+}
+
+@media print {
+    .print_button {
+        display: none !important;
+    }
+
+    table {
+        page-break-inside: avoid;
+        page-break-after: auto
+    }
+
+    table tr {
+        page-break-inside: avoid;
+        page-break-after: auto
+    }
+
+    table td {
+        page-break-inside: avoid;
+        page-break-after: auto
+    }
+
+    table thead {
+        display: table-header-group
+    }
+
+    table tfoot {
+        display: table-footer-group
+    }
+}
