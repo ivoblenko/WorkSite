@@ -1,0 +1,30 @@
+{% extends '../base/base.html' %}
+
+{% block content %}
+    <div class="main_menu row">
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                <h3 style="color: red">{{ error }}</h3>
+                <div class="text-field text-field_floating-2">
+                    {{ form.username }}
+                    <label for="{{ form.username.auto_id }}">{{ form.username.label }}</label>
+                </div>
+                <br>
+                <br>
+
+                <div class="text-field text-field_floating-2">
+                    {{ form.password }}
+                    <label for="{{ form.password.auto_id }}">{{ form.password.label }}</label>
+                </div>
+
+                <br>
+                <br>
+                <br>
+                <button class="menu_button row" type="submit">
+                    Войти
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -10,12 +10,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
             integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
     <script>
-        $(function () {
-            $(".datepicker").datepicker();
-        });
-    </script>
-    <script>
-        {% if request.session.print %}
+
+        $(document).ready(function ($) {
+            $(function () {
+                $(".datepicker").datepicker();
+            });
+            $('.fa-close').click(function () {
+                let parent = this.parentNode;
+                let file_id = parent.getAttribute('file_id');
+
+                $.ajax({
+                    url: "{% url 'inspection_file_delete' %}",
+                    data: {
+                        file_id: file_id
+                    },
+                    success: function (data) {
+                        parent.remove();
+                    }
+                })
+            })
+        })
+
+
+        {% if print %}
             window.open("{% url 'inspection_print' pk %}")
         {% endif %}
     </script>
@@ -30,13 +47,12 @@
 {% block content %}
     {{ form.media }}
     <button class="button" onclick="document.location='{% url 'inspections_menu' %}'">Назад</button>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         {% block patient %}
             <div class="row" style="justify-content: center">
                 <h5>Пациент</h5>
-
                 <div class="col">
                     <div class="text-field text-field_floating-2">
                         {{ form.surname }}
@@ -50,6 +66,7 @@
                         <label for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
                     </div>
                 </div>
+
 
                 <div class="col">
                     <div class="text-field text-field_floating-2 col">
@@ -84,8 +101,27 @@
 
         <h5>{{ form.additionally.label }}</h5>
         {{ form.additionally }}
+
         <br>
-        <p>
+        <p align="center">
+            {{ form.files.label_tag }}
+            {{ form.files }}
+        </p>
+        {% if files_list|length > 0 %}
+            {% load static %}
+            <h5>Загруженные файлы</h5>
+            <ul class="files_ul" align="center">
+                {% for file in files_list %}
+                    <li file_id="{{ file.id }}">
+                        <a href="{% static file.url %}" target="_blank">{{ file.filename }}</a>
+                        <i class="fa fa-close fa-lg" style="color: red;cursor: pointer"></i>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+
+        <p align="center">
             {{ form.print.label_tag }}
             {{ form.print }}
         </p>

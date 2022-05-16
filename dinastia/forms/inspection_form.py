@@ -1,6 +1,5 @@
 from django import forms
 from ..models.inspections import Inspections
-from .patient_form import PatientForm
 
 
 class InspectionForm(forms.ModelForm):
@@ -11,9 +10,11 @@ class InspectionForm(forms.ModelForm):
                                widget=forms.NumberInput({'placeholder': 'phone'}), required=False)
     dob = forms.DateField(label='Дата рождения', widget=forms.DateInput({'class': 'datepicker', 'placeholder': 'dob'}),
                           required=False)
-    print = forms.BooleanField(label='Напечатать протокол', required=False)
+    files = forms.FileField(label='Загрузка файлов', required=False,
+                            widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    print = forms.BooleanField(label='Напечатать осмотр', required=False)
 
     class Meta:
         model = Inspections
         fields = ['surname', 'complaints', 'anamnesis', 'diagnosis',
-                  'additionally', 'print']
+                  'additionally', 'files', 'print']

@@ -9,7 +9,7 @@ h1, h2, h3, h4, h5 {
     margin: 20px !important;
 }
 
-a{
+a {
     color: #0d6efd !important;
     cursor: pointer !important;
     text-decoration: none !important;
@@ -202,4 +202,9 @@ header h2 {
 .text-field_floating-2 input:not(:placeholder-shown) ~ label {
     top: 0;
     transform: translateY(-50%) scale(0.75);
+}
+
+.files_ul {
+    list-style: none;
+    padding: 0px;
 }

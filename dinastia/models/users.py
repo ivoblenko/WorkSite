@@ -1,15 +1,10 @@
 from django.db import models
 from .staffs import Staffs
-
-__all__ = [
-    'Users'
-]
+from django.contrib.auth.models import AbstractUser
 
 
-class Users(models.Model):
-    username = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    staff = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+class Users(AbstractUser):
+    staff = models.ForeignKey(Staffs, on_delete=models.CASCADE, null=True)
 
     class Meta:
         app_label = 'dinastia'

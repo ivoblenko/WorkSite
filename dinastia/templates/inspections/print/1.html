@@ -8,31 +8,37 @@
 {% endblock %}
 
 {% block text %}
-    <p>
-        Дата проведения: {{ inspection.date|date }}
-    </p>
-    <p>
-        Пациент: {{ inspection.patient.short_fio }}
-    </p>
-    <p>
-        <b>ЖАЛОБЫ:</b> {{ inpection.complaints }}
-    </p>
-    <p>
-        <b>АНАМНЕЗ:</b> {{ inspection.anamnesis }}
-    </p>
-    <p>
+    {% autoescape off %}
+        <p>
+            Дата проведения: {{ inspection.date|date }}
+        </p>
+        <p>
+            Пациент: {{ inspection.patient.short_fio }}
+        </p>
+        <p>
+            <b>ЖАЛОБЫ:</b>
+        </p>
+        {{ inpection.complaints|safe }}
+
+        <p>
+            <b>АНАМНЕЗ:</b>
+        </p>
+        {{ inspection.anamnesis }}
+
+
         {{ inspection.additionaly }}
-    </p>
-    <p>
-        <b>{{ inspection.additionaly }}</b>
-    </p>
-    <p>
-        <b>ДИАГНОЗ:</b> {{ inspection.diagnosis }}
-    </p>
-    <table class="signature">
-        <tr>
-            <td>Врач: {{ inspection.staff.short_fio }}</td>
-            <td>Подпись: _______________________</td>
-        </tr>
-    </table>
+
+        <p>
+            <b>{{ inspection.additionaly }}</b>
+        </p>
+        <p>
+            <b>ДИАГНОЗ:</b> {{ inspection.diagnosis }}
+        </p>
+        <table class="signature">
+            <tr>
+                <td>Врач: {{ inspection.staff }}</td>
+                <td>Подпись: _______________________</td>
+            </tr>
+        </table>
+    {% endautoescape %}
 {% endblock %}
