@@ -1,5 +1,6 @@
 from django import forms
 from ..models.inspections import Inspections
+from WorkSite.settings import DATE_INPUT_FORMATS
 
 
 class InspectionForm(forms.ModelForm):
@@ -8,7 +9,8 @@ class InspectionForm(forms.ModelForm):
     patronymic = forms.CharField(label='Отчество', max_length=200, widget=forms.TextInput({'placeholder': 'family'}))
     phone = forms.IntegerField(label='Телефон', max_value=9999999999, min_value=1000000000,
                                widget=forms.NumberInput({'placeholder': 'phone'}), required=False)
-    dob = forms.DateField(label='Дата рождения', widget=forms.DateInput({'class': 'datepicker', 'placeholder': 'dob'}),
+    dob = forms.DateField(label='Дата рождения', input_formats=DATE_INPUT_FORMATS,
+                          widget=forms.DateInput({'class': 'datepicker', 'placeholder': 'dob'}),
                           required=False)
     files = forms.FileField(label='Загрузка файлов', required=False,
                             widget=forms.ClearableFileInput(attrs={'multiple': True}))

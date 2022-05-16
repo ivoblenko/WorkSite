@@ -9,6 +9,7 @@ from django.views.generic.edit import UpdateView
 from ajax_datatable.views import AjaxDatatableView
 from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
+from WorkSite.settings import DATE_INPUT_FORMATS
 
 
 # TODO: переделать под подгрузку кнопок по отделению юзера?
@@ -19,6 +20,7 @@ def menu(request):
 
 @login_required
 def inspection_new(request, department_id):
+    error = ""
     if request.method == "POST":
         form = InspectionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -27,8 +29,8 @@ def inspection_new(request, department_id):
                 surname=request.POST.get('surname'),
                 name=request.POST.get('name'),
                 patronymic=request.POST.get('patronymic'),
-                phone=(request.POST.get('phone') != '') if request.POST.get('phone') else None,
-                dob=(request.POST.get('dob') != '') if request.POST.get('dob') else None)
+                phone=request.POST.get('phone') if request.POST.get('phone') != '' else None,
+                dob=request.POST.get('dob') if request.POST.get('dob') != '' else None)
             patient.save()
             inspection.patient = patient
             inspection.staff = request.user.staff
@@ -42,9 +44,11 @@ def inspection_new(request, department_id):
                 )
                 new_file.save()
 
-            request.session['print'] = request.POST.get('print') != None if 1 else 0
+            request.session['print'] = 1 if request.POST.get('print') != None else 0
 
             return redirect('inspection_update', pk=inspection.pk)
+        else:
+            error = "Неверно заполненная форма!"
     else:
         form = InspectionForm()
         template = InspectionsTemplates.objects.get(department=department_id)
@@ -55,7 +59,8 @@ def inspection_new(request, department_id):
             'additionally': template.additionally
         }
 
-    return render(request, 'inspections/inspection.html', {'form': form})
+    return render(request, 'inspections/inspection.html', {'form': form,
+                                                           'error': error})
 
 
 # TODO: переписать способ сохранения, поискать как сохранять связные модели
@@ -75,8 +80,8 @@ def inspection_update(request, pk):
             inspection.patient.surname = request.POST.get('surname')
             inspection.patient.name = request.POST.get('name')
             inspection.patient.patronymic = request.POST.get('patronymic')
-            inspection.patient.dob = (request.POST.get('dob') != '') if request.POST.get('dob') else None
-            inspection.patient.phone = (request.POST.get('phone') != '') if request.POST.get('phone') else None
+            inspection.patient.dob = request.POST.get('dob') if request.POST.get('dob') != '' else None
+            inspection.patient.phone = request.POST.get('phone') if request.POST.get('phone') != '' else None
 
             inspection.save(force_update=True)
             inspection.patient.save(force_update=True)
@@ -89,7 +94,7 @@ def inspection_update(request, pk):
                 )
                 new_file.save()
 
-            request.session['print'] = request.POST.get('print') != None if 1 else 0
+            request.session['print'] = 1 if request.POST.get('print') != None else 0
 
             return redirect('inspection_update', pk=inspection.pk)
     else:
@@ -100,7 +105,7 @@ def inspection_update(request, pk):
             'surname': inspection.patient.surname,
             'name': inspection.patient.name,
             'patronymic': inspection.patient.patronymic,
-            'dob': inspection.patient.dob,
+            'dob': inspection.patient.dob.strftime(DATE_INPUT_FORMATS[0]),
             'phone': inspection.patient.phone,
             'complaints': inspection.complaints,
             'anamnesis': inspection.anamnesis,

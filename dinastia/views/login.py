@@ -12,10 +12,7 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        if request.GET != {}:
-            url = request.GET.get('next') if request.GET['next'] else 'main_menu'
-        else:
-            url = 'main_menu'
+        url = request.GET.get('next') if request.GET.get('next', False) else 'main_menu'
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
