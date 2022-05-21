@@ -4,6 +4,7 @@ from ..models.inspection_templates import InspectionsTemplates
 from ..models.inspections import Inspections
 from ..models.patients import Patients
 from ..models.files import Files
+from ..models.departments import Departments
 from ..forms.inspection_form import InspectionForm
 from django.views.generic.edit import UpdateView
 from ajax_datatable.views import AjaxDatatableView
@@ -12,10 +13,17 @@ from django.contrib.auth.decorators import login_required
 from WorkSite.settings import DATE_INPUT_FORMATS
 
 
-# TODO: переделать под подгрузку кнопок по отделению юзера?
 @login_required
 def menu(request):
-    return render(request, 'inspections/menu.html')
+    user = request.user
+    print(user.groups.all())
+    if user.groups.filter(name='admin').exists():
+        departments = Departments.objects.all()
+    else:
+        departments = [{'id': user.staff.department.id,
+                        'name': user.staff.department.name
+                        }]
+    return render(request, 'inspections/menu.html', {'departments': departments})
 
 
 @login_required
@@ -25,20 +33,12 @@ def inspection_new(request, department_id):
         form = InspectionForm(request.POST, request.FILES)
         if form.is_valid():
             inspection = form.save(commit=False)
-            patient = Patients(
-                surname=request.POST.get('surname'),
-                name=request.POST.get('name'),
-                patronymic=request.POST.get('patronymic'),
-                phone=request.POST.get('phone') if request.POST.get('phone') != '' else None,
-                dob=request.POST.get('dob') if request.POST.get('dob') != '' else None)
-            patient.save()
-            inspection.patient = patient
             inspection.staff = request.user.staff
             inspection.save()
 
             for file in request.FILES.getlist('files'):
                 new_file = Files(
-                    inspection=inspection,
+                    patient=inspection.patient,
                     file=file,
                     name='Test'
                 )
@@ -71,24 +71,17 @@ def inspection_update(request, pk):
         if form.is_valid():
             inspection = get_object_or_404(Inspections, pk=pk)
             data_from_form = form.save(commit=False)
+
             inspection.complaints = data_from_form.complaints
             inspection.anamnesis = data_from_form.anamnesis
             inspection.additionally = data_from_form.additionally
             inspection.diagnosis = data_from_form.diagnosis
             inspection.staff = request.user.staff
-
-            inspection.patient.surname = request.POST.get('surname')
-            inspection.patient.name = request.POST.get('name')
-            inspection.patient.patronymic = request.POST.get('patronymic')
-            inspection.patient.dob = request.POST.get('dob') if request.POST.get('dob') != '' else None
-            inspection.patient.phone = request.POST.get('phone') if request.POST.get('phone') != '' else None
-
             inspection.save(force_update=True)
-            inspection.patient.save(force_update=True)
 
             for file in request.FILES.getlist('files'):
                 new_file = Files(
-                    inspection=inspection,
+                    patient=inspection.patient,
                     file=file,
                     name='Test'
                 )
@@ -99,14 +92,10 @@ def inspection_update(request, pk):
             return redirect('inspection_update', pk=inspection.pk)
     else:
         inspection = get_object_or_404(Inspections, id=pk)
-        files_list = Files.objects.filter(inspection=inspection)
+        files_list = Files.objects.filter(patient=inspection.patient)
 
         form = InspectionForm(data={
-            'surname': inspection.patient.surname,
-            'name': inspection.patient.name,
-            'patronymic': inspection.patient.patronymic,
-            'dob': inspection.patient.dob.strftime(DATE_INPUT_FORMATS[0]),
-            'phone': inspection.patient.phone,
+            'patient': inspection.patient,
             'complaints': inspection.complaints,
             'anamnesis': inspection.anamnesis,
             'additionally': inspection.additionally,
@@ -141,7 +130,6 @@ def inspection_templates(request):
     return render(request, 'inspections/inspection_templates.html', {'templates': templates})
 
 
-# @login_required
 class InspectionTemplateUpdateView(UpdateView):
     model = InspectionsTemplates
     fields = ['template_name', 'complaints', 'anamnesis', 'diagnosis', 'additionally']
@@ -153,20 +141,18 @@ def inspection_table(request):
     return render(request, 'inspections/table.html')
 
 
-# @login_required
+# TODO:доделать поиск для даты и связных полей
 class InspectionAjaxDatatableView(AjaxDatatableView):
     model = Inspections
     title = 'Осмотры'
     initial_order = [["date", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'Все']]
-    search_values_separator = False
-    show_column_filters = False
 
     column_defs = [
-        {'name': 'patient', 'visible': True, },
-        {'name': 'staff', 'visible': True, },
-        {'name': 'date', 'visible': True, },
-        {'name': 'Печать', 'visible': True}
+        {'name': 'patient', 'visible': True},
+        {'name': 'staff', 'visible': True, 'foreign_field': 'staff__surname'},
+        {'name': 'date', 'visible': True, 'searchable': True, 'lookup_field': '__icontains'},
+        {'name': 'Печать', 'visible': True, 'searchable': False}
     ]
 
     def customize_row(self, row, obj):
@@ -174,6 +160,7 @@ class InspectionAjaxDatatableView(AjaxDatatableView):
             reverse('inspection_update', args=(obj.id,)),
             obj.patient
         )
+        row['staff'] = str(obj.staff)
         row['Печать'] = '<a onclick="window.open(\'%s\')">Печать</a>' % (
             reverse('inspection_print', args=(obj.id,))
         )

@@ -36,10 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dinastia.apps.DinastiaConfig',
+    # 'dinastia.apps.DinastiaConfig',
     'tinymce',
     'ajax_datatable',
     'phonenumber_field',
+    'dinastia'
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,5 @@ LOGIN_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'dinastia.Users'
 
 DATE_INPUT_FORMATS = ['%Y-%m-%d']
+
+AJAX_DATATABLE_TEST_FILTERS = True

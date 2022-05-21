@@ -13,8 +13,11 @@
     {{ form.media }}
 
     <button class="button" onclick="document.location='{% url 'inspection_templates' %}'">Назад</button>
-    <form method="post">{% csrf_token %}
-
+    <form method="post">
+        {% csrf_token %}
+        <br>
+        {{ form.template_name.label_tag }}
+        {{ form.template_name }}
         <h5>{{ form.complaints.label }}</h5>
         {{ form.complaints }}
 

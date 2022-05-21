@@ -1,22 +1,39 @@
 {% extends '../base/base.html' %}
 
+{% load tags %}
+
 {% block content %}
-    <div class="main_menu row">
+    <div class="main_menu row center_objects">
         <div class="col">
+            {% if request.user|has_group:"staff" %}
+                <button class="menu_button row" onclick="document.location='{% url 'inspections_menu' %}'">
+                    Новые осмотры
+                </button>
+                <br>
 
-            <button class="menu_button row" onclick="document.location='{% url 'inspections_menu' %}'">
-                Новые осмотры
-            </button>
-            <br>
+                <button class="menu_button row" onclick="document.location='{% url 'inspections_table' %}'">
+                    Проведенные осмотры
+                </button>
+                <br>
+            {% endif %}
 
-            <button class="menu_button row" onclick="document.location='{% url 'inspections_table' %}'">
-                Проведенные осмотры
-            </button>
-            <br>
+            {% if request.user|has_group:"registrator" %}
+                <button class="menu_button row" onclick="document.location='{% url 'patient_new' %}'">
+                    Зарегистрировать нового пациента
+                </button>
+                <br>
 
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_templates' %}'">
-                Редактирование шаблонов осмотров
-            </button>
+                <button class="menu_button row" onclick="document.location='{% url 'patient_table' %}'">
+                    Зарегистрированные пациенты
+                </button>
+                <br>
+            {% endif %}
+
+            {% if request.user|has_group:"admin" %}
+                <button class="menu_button row" onclick="document.location='{% url 'inspection_templates' %}'">
+                    Редактирование шаблонов осмотров
+                </button>
+            {% endif %}
             <br>
             <br>
             <br>

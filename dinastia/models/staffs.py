@@ -2,10 +2,6 @@ from django.db import models
 from .staff_types import StaffTypes
 from .departments import Departments
 
-__all__ = [
-    'Staffs'
-]
-
 
 class Staffs(models.Model):
     surname = models.CharField(max_length=200)
@@ -18,7 +14,8 @@ class Staffs(models.Model):
         app_label = 'dinastia'
 
     def __str__(self):
-        return self.surname + " " + self.name[0] + " " + self.patronymic[0]
+        return self.surname + " " + self.name[0] + "." + self.patronymic[0] + "."
 
-    def get_short_fio(self):
-        return self.surname + " " + self.name[0] + " " + self.patronymic[0]
+    @property
+    def short_fio(self):
+        return self.surname + " " + self.name[0] + "." + self.patronymic[0] + "."

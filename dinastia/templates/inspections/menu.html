@@ -4,44 +4,23 @@
     Новые осмотры
 {% endblock %}
 
+
 {% block content %}
-    <div class="menu row">
-        <div class="col">
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 1 %}'">
-                Осмотр врача-невролога
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 2 %}'">
-                Осмотр врача травматолога-ортопеда
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 3 %}'">
-                Осмотр врача-нейрохирурга
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 4 %}'">
-                Осмотр врача-ревматолога
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 5 %}'">
-                Осмотр врача-физиотерапевта
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 6 %}'">
-                Осмотр врача лечебной физкультуры
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 7 %}'">
-                Осмотр врача-терапевта
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'inspection_new' 8 %}'">
-                Осмотр врача-онколога
-            </button>
-            <br>
-            <button class="menu_button row" onclick="document.location='{% url 'main_menu' %}'">
-                Назад
-            </button>
-        </div>
-    </div>
+    {% if departments|length > 5 %}
+        <div class="menu row ">
+    {% else %}
+        <div class="menu row center_objects">
+    {% endif %}
+<div class="col">
+    {% for dep in departments %}
+        <button class="menu_button row" onclick="document.location='{% url 'inspection_new' dep.id %}'">
+            {{ dep.name }}
+        </button>
+        <br>
+    {% endfor %}
+    <button class="menu_button row" onclick="document.location='{% url 'main_menu' %}'">
+        Назад
+    </button>
+</div>
+</div>
 {% endblock %}

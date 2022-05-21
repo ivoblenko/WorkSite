@@ -63,7 +63,7 @@ header h2 {
 }
 
 .main_menu {
-    margin-top: 200px !important;
+    margin-top: 10% !important;
 }
 
 .menu_row {
@@ -110,6 +110,15 @@ header h2 {
 
 .menu {
     margin-top: 10px !important;
+}
+
+.center_objects {
+    margin: 0 !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -65%);
+    padding: 0px;
 }
 
 .text-field {
@@ -207,4 +216,23 @@ header h2 {
 .files_ul {
     list-style: none;
     padding: 0px;
+}
+
+
+/*jquery confirm*/
+.jconfirm-title-c {
+    display: flex !important;
+    justify-content: center;
+    color: red;
+    font-size: 28px !important;
+}
+
+.jconfirm-content {
+    text-align: center;
+}
+
+.jconfirm-buttons {
+    display: flex !important;
+    justify-content: center;
+    float: none !important;
 }

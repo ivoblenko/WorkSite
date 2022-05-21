@@ -1,0 +1,97 @@
+{% extends '../base/base.html' %}
+
+{% load static %}
+
+{% block header %}
+    Регистрация пациента
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
+            integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/inspection.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"
+          integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous"/>
+{% endblock %}
+
+{% block content %}
+    {{ form.media }}
+    <button class="button" onclick="document.location='{% url 'main_menu' %}'">Назад</button>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3 style="color: red">{{ form.errors }}</h3>
+
+
+        <div class="row" style="justify-content: center">
+            <h5>Персональная информация</h5>
+            <div class="col">
+                <div class="text-field text-field_floating-2">
+                    {{ form.surname }}
+                    <label for="{{ form.surname.auto_id }}">{{ form.surname.label }}</label>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.name }}
+                    <label for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.patronymic }}
+                    <label for="{{ form.patronymic.auto_id }}">{{ form.patronymic.label }}</label>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.dob }}
+                    <label for="{{ form.dob.auto_id }}">{{ form.dob.label }}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.phone }}
+                    <label for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <p align="center">
+            {{ form.files.label_tag }}
+            {{ form.files }}
+        </p>
+        {% if files_list|length > 0 %}
+            {% load static %}
+            <h5>Загруженные файлы</h5>
+            <ul class="files_ul" align="center">
+                {% for file in files_list %}
+                    <li file_id="{{ file.id }}">
+                        <a href="{% static file.url %}" target="_blank">{{ file.filename }}</a>
+                        <i class="fa fa-close fa-lg" style="color: red;cursor: pointer"></i>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <br>
+
+
+        <br>
+        <input align="center" class="button submit_button" type="submit" value="Сохранить">
+    </form>
+
+{% endblock %}
