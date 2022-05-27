@@ -106,3 +106,19 @@ class PatientAjaxDatatableView(AjaxDatatableView):
 
             )
         return
+
+
+@login_required
+def get_patient_files(request):
+    patient = get_object_or_404(Patients, pk=request.GET.get('patient_id'))
+    files = Files.get_json_by_patient(patient=patient)
+    print(files)
+    return JsonResponse({'files': files}, status=200)
+
+
+@login_required
+def delete_patient_files(request):
+    file = get_object_or_404(Files, pk=request.GET.get('file_id'))
+    file.file.delete()
+    file.delete()
+    return JsonResponse({'data': 1}, status=200)

@@ -25,3 +25,15 @@ class Files(models.Model):
     @property
     def url(self):
         return 'files/patient/{0}/{1}'.format(self.patient.id, self.filename)
+
+    @classmethod
+    def get_json_by_patient(cls, patient):
+        files = cls.objects.filter(patient=patient)
+        json = {}
+        for file in files:
+            json[file.id] = {
+                'id': file.id,
+                'name': file.filename,
+                'url': file.url
+            }
+        return json

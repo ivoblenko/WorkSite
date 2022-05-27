@@ -20,26 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="967e59ad-1aa2-4b61-8583-f6fff7b239ca" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dinastia/templates/patients/patient.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dinastia/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dinastia/templatetags/tags.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WorkSite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/forms/inspection_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/forms/inspection_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/forms/inspection_templates_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/forms/inspection_templates_form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dinastia/models/files.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/models/files.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/models/inspection_templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/models/inspection_templates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/models/patients.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/models/patients.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/models/staffs.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/models/staffs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dinastia/static/js/inspection.js" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/static/js/inspection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dinastia/templates/inspections/inspection.html" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/templates/inspections/inspection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/templates/inspections/inspection_template_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/templates/inspections/inspection_template_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/templates/inspections/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/templates/inspections/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/templates/inspections/table.html" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/templates/inspections/table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/templates/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/templates/menu/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/templates/menu/menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dinastia/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dinastia/views/inspections.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/views/inspections.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dinastia/views/patients.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/views/patients.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +150,10 @@
       <workItem from="1652721982297" duration="2505000" />
       <workItem from="1652861203275" duration="743000" />
       <workItem from="1653002723633" duration="18000" />
-      <workItem from="1653135524464" duration="17750000" />
+      <workItem from="1653135524464" duration="18903000" />
+      <workItem from="1653177317976" duration="854000" />
+      <workItem from="1653487697102" duration="131000" />
+      <workItem from="1653690300574" duration="3094000" />
     </task>
     <task id="LOCAL-00001" summary="init + menu + inspection base form">
       <created>1651967282160</created>
@@ -213,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652724484953</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="new user + patient registration">
+      <created>1653164264955</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653164264956</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +237,8 @@
     <MESSAGE value="print" />
     <MESSAGE value="auth + fix" />
     <MESSAGE value="inspection form fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="inspection form fix" />
+    <MESSAGE value="new user + patient registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="new user + patient registration" />
   </component>
   <component name="WindowStateProjectService">
     <state x="945" y="226" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1651973391921">
@@ -278,9 +277,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="469" y="176" key="SettingsEditor/0.0.1920.1080/1920.25.1792.1095@0.0.1920.1080" timestamp="1652641245406" />
-    <state x="560" y="277" key="Vcs.Push.Dialog.v2" timestamp="1652724487370">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="523" y="287" key="Vcs.Push.Dialog.v2" timestamp="1653164266756">
+      <screen x="0" y="0" width="1792" height="1120" />
     </state>
+    <state x="523" y="287" key="Vcs.Push.Dialog.v2/-1180.25.1180.795/0.0.1792.1120@0.0.1792.1120" timestamp="1653164266756" />
     <state x="560" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.25.1792.1095@0.0.1920.1080" timestamp="1652724487370" />
     <state x="560" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1652046741039" />
     <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1652017261187">

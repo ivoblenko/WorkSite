@@ -117,14 +117,6 @@ def print_inspection(request, pk):
 
 
 @login_required
-def file_delete(request):
-    file = get_object_or_404(Files, pk=request.GET.get('file_id'))
-    file.file.delete()
-    file.delete()
-    return JsonResponse({'data': 1}, status=200)
-
-
-@login_required
 def inspection_templates(request):
     templates = InspectionsTemplates.objects.all()
     return render(request, 'inspections/inspection_templates.html', {'templates': templates})

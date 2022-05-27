@@ -36,46 +36,6 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h3 style="color: red">{{ error }}</h3>
-        {#        {% block patient %}#}
-        {##}
-        {#            <div class="row" style="justify-content: center">#}
-        {#                <h5>Пациент</h5>#}
-        {#                <div class="col">#}
-        {#                    <div class="text-field text-field_floating-2">#}
-        {#                        {{ form.surname }}#}
-        {#                        <label for="{{ form.surname.auto_id }}">{{ form.surname.label }}</label>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {#                <div class="col">#}
-        {#                    <div class="text-field text-field_floating-2 col">#}
-        {#                        {{ form.name }}#}
-        {#                        <label for="{{ form.name.auto_id }}">{{ form.name.label }}</label>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {##}
-        {#                <div class="col">#}
-        {#                    <div class="text-field text-field_floating-2 col">#}
-        {#                        {{ form.patronymic }}#}
-        {#                        <label for="{{ form.patronymic.auto_id }}">{{ form.patronymic.label }}</label>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {##}
-        {#                <div class="col">#}
-        {#                    <div class="text-field text-field_floating-2 col">#}
-        {#                        {{ form.dob }}#}
-        {#                        <label for="{{ form.dob.auto_id }}">{{ form.dob.label }}</label>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#                <div class="col">#}
-        {#                    <div class="text-field text-field_floating-2 col">#}
-        {#                        {{ form.phone }}#}
-        {#                        <label for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        {% endblock %}#}
 
         {{ form.patient.label_tag }} {{ form.patient }}
 
@@ -96,18 +56,22 @@
             {{ form.files.label_tag }}
             {{ form.files }}
         </p>
-        {% if files_list|length > 0 %}
-            {% load static %}
-            <h5>Загруженные файлы</h5>
-            <ul class="files_ul" align="center">
+
+        {% load static %}
+        <h5>Загруженные файлы</h5>
+        <ul id="patient_files" class="files_ul" align="center">
+            {% if files_list|length > 0 %}
                 {% for file in files_list %}
                     <li file_id="{{ file.id }}">
                         <a href="{% static file.url %}" target="_blank">{{ file.filename }}</a>
                         <i class="fa fa-close fa-lg" style="color: red;cursor: pointer"></i>
                     </li>
                 {% endfor %}
-            </ul>
-        {% endif %}
+            {% else %}
+               <span>Файлы отсутствуют</span>
+            {% endif %}
+        </ul>
+
         <br>
 
         <p align="center">

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)mgv@0a4yqngs@#d#f7u=g#qi+9#sscx_mnx_x_1tz%%$hpw9s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dinastia-med.online', '127.0.0.1']
 
 # Application definition
 
@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'dinastia.apps.DinastiaConfig',
     'tinymce',
     'ajax_datatable',
     'phonenumber_field',

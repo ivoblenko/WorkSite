@@ -26,5 +26,6 @@ urlpatterns = [
     path('patient/update/<int:pk>', patients.patient_update, name='patient_update'),
     path('patient/table', patients.patient_table, name='patient_table'),
     path('patient/table/get', patients.PatientAjaxDatatableView.as_view(), name='patient_table_get'),
-    path('patient/file_delete', patients.file_delete, name='patient_file_delete'),
+    path('patient/get_patient_files', patients.get_patient_files, name='get_patient_files'),
+    path('patient/delete_patient_files', patients.delete_patient_files, name='delete_patient_files'),
 ]
