@@ -9,7 +9,7 @@ class Patients(models.Model):
     phone = models.PositiveBigIntegerField(null=True, blank=True, verbose_name="Номер телефона")
     dob = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
     sex = models.PositiveSmallIntegerField(null=True, blank=True)
-    snils = models.PositiveIntegerField(null=True, blank=True)
+    snils = models.PositiveBigIntegerField(null=True, blank=True)
     permanent_address = models.TextField(null=True, blank=True)
     registration_address = models.TextField(null=True, blank=True)
     contact_person = models.CharField(max_length=200, null=True, blank=True)

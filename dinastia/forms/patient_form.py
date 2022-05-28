@@ -42,3 +42,11 @@ class PatientForm(forms.ModelForm):
             'contact_person': forms.TextInput({'placeholder': 'contact_person'}),
             'contact_person_phone': forms.NumberInput({'placeholder': 'contact_person_phone'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(PatientForm, self).__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['registration_address'].required = False
+        self.fields['contact_person'].required = False
+        self.fields['contact_person_phone'].required = False
