@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="967e59ad-1aa2-4b61-8583-f6fff7b239ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/forms/patient_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/forms/patient_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dinastia/models/patients.py" beforeDir="false" afterPath="$PROJECT_DIR$/dinastia/models/patients.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WorkSite/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +149,7 @@
       <workItem from="1653177317976" duration="854000" />
       <workItem from="1653487697102" duration="131000" />
       <workItem from="1653690300574" duration="3184000" />
-      <workItem from="1653739517223" duration="7605000" />
+      <workItem from="1653739517223" duration="7651000" />
     </task>
     <task id="LOCAL-00001" summary="init + menu + inspection base form">
       <created>1651967282160</created>
@@ -237,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653756989254</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix">
+      <created>1653757448934</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1653757448934</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,11 +311,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="469" y="176" key="SettingsEditor/0.0.1920.1080/1920.25.1792.1095@0.0.1920.1080" timestamp="1652641245406" />
-    <state x="523" y="287" key="Vcs.Push.Dialog.v2" timestamp="1653756990554">
+    <state x="523" y="287" key="Vcs.Push.Dialog.v2" timestamp="1653757450226">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="523" y="287" key="Vcs.Push.Dialog.v2/-1180.25.1180.795/0.0.1792.1120@0.0.1792.1120" timestamp="1653164266756" />
-    <state x="523" y="287" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1653756990554" />
+    <state x="523" y="287" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1653757450226" />
     <state x="560" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.25.1792.1095@0.0.1920.1080" timestamp="1652724487370" />
     <state x="560" y="277" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1652046741039" />
     <state x="523" y="287" key="Vcs.Push.Dialog.v2/0.25.1792.1024@0.25.1792.1024" timestamp="1653755469117" />

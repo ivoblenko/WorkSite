@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tinymce',
     'ajax_datatable',
-    'phonenumber_field',
     'dinastia'
 ]
 
