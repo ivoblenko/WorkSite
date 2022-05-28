@@ -9,6 +9,12 @@ class PatientForm(forms.ModelForm):
     class Meta:
         model = Patients
         fields = '__all__'
+        required = (
+            'surname',
+            'name',
+            'patronymic',
+            'dob'
+        )
         labels = {
             'surname': 'Фамилия',
             'name': 'Имя',
