@@ -8,18 +8,31 @@ class PatientForm(forms.ModelForm):
 
     class Meta:
         model = Patients
-        fields = ['surname', 'name', 'patronymic', 'phone', 'dob']
+        fields = '__all__'
         labels = {
             'surname': 'Фамилия',
             'name': 'Имя',
             'patronymic': 'Отчество',
+            'sex': ' Пол',
+            'dob': 'Дата рождения',
+            'snils': 'Снилс',
+            'permanent_address': 'Адрес постоянного места жительства',
+            'registration_address': 'Адрес регистрации по месту пребывания',
             'phone': 'Телефон',
-            'dob': 'Дата рождения'
+            'contact_person': 'ФИО',
+            'contact_person_phone': 'Телефон'
         }
         widgets = {
             'surname': forms.TextInput({'placeholder': 'family'}),
             'name': forms.TextInput({'placeholder': 'family'}),
             'patronymic': forms.TextInput({'placeholder': 'family'}),
+            'sex': forms.Select(choices=((0, 'муж.'),
+                                         (1, 'жен.'))),
+            'dob': forms.DateInput({'class': 'datepicker', 'placeholder': 'dob'}),
+            'snils': forms.NumberInput({'placeholder': 'snils'}),
+            'permanent_address': forms.TextInput({'placeholder': 'permanent_address'}),
+            'registration_address': forms.TextInput({'placeholder': 'registration_address'}),
             'phone': forms.NumberInput({'placeholder': 'phone'}),
-            'dob': forms.DateInput({'class': 'datepicker', 'placeholder': 'dob'})
+            'contact_person': forms.TextInput({'placeholder': 'contact_person'}),
+            'contact_person_phone': forms.NumberInput({'placeholder': 'contact_person_phone'}),
         }

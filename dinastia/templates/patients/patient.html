@@ -8,8 +8,6 @@
 
 {% block js %}
     {{ block.super }}
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js"
             integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
     <script src="{% static 'js/inspection.js' %}"></script>
@@ -17,8 +15,6 @@
 
 {% block css %}
     {{ block.super }}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css"
           integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous"/>
 {% endblock %}
@@ -55,16 +51,63 @@
                 </div>
             </div>
 
+            <div class="col" style="margin: auto; text-align: center;">
+                {{ form.sex.label_tag }} {{ form.sex }}
+            </div>
+
             <div class="col">
                 <div class="text-field text-field_floating-2 col">
                     {{ form.dob }}
                     <label for="{{ form.dob.auto_id }}">{{ form.dob.label }}</label>
                 </div>
             </div>
+        </div>
+
+        <br>
+        <br>
+
+
+        <div class="row" style="justify-content: center">
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.snils }}
+                    <label for="{{ form.snils.auto_id }}">{{ form.snils.label }}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="long_text-field text-field_floating-2 col">
+                    {{ form.permanent_address }}
+                    <label for="{{ form.permanent_address.auto_id }}">{{ form.permanent_address.label }}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="long_text-field text-field_floating-2 col">
+                    {{ form.registration_address }}
+                    <label for="{{ form.registration_address.auto_id }}">{{ form.registration_address.label }}</label>
+                </div>
+            </div>
             <div class="col">
                 <div class="text-field text-field_floating-2 col">
                     {{ form.phone }}
                     <label for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row" style="justify-content: center">
+            <h5>Контактное лицо</h5>
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.contact_person }}
+                    <label for="{{ form.contact_person.auto_id }}">{{ form.contact_person.label }}</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.contact_person_phone }}
+                    <label for="{{ form.contact_person_phone.auto_id }}">{{ form.contact_person_phone.label }}</label>
                 </div>
             </div>
         </div>

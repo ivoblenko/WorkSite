@@ -3,11 +3,17 @@ from django.urls import reverse
 
 
 class Patients(models.Model):
-    surname = models.CharField(max_length=200)
-    name = models.CharField(max_length=200)
-    patronymic = models.CharField(max_length=200)
-    phone = models.BigIntegerField(null=True, blank=True)
-    dob = models.DateField(null=True, blank=True)
+    surname = models.CharField(max_length=200, verbose_name="Фамилия")
+    name = models.CharField(max_length=200, verbose_name="Имя")
+    patronymic = models.CharField(max_length=200, verbose_name="Отчество")
+    phone = models.PositiveBigIntegerField(null=True, blank=True, verbose_name="Номер телефона")
+    dob = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
+    sex = models.PositiveSmallIntegerField(null=True)
+    snils = models.PositiveIntegerField(null=True)
+    permanent_address = models.TextField(null=True)
+    registration_address = models.TextField(null=True)
+    contact_person = models.CharField(max_length=200, null=True)
+    contact_person_phone = models.PositiveBigIntegerField(null=True, blank=True)
 
     class Meta:
         app_label = 'dinastia'
