@@ -15,6 +15,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DINASTIA_DIR = os.path.join(BASE_DIR, 'dinastia')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -117,12 +118,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+# MEDIA_ROOT = '/home/m/msham/work_site/public_html/media'
+MEDIA_ROOT = os.path.join(DINASTIA_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 # STATIC_ROOT = '/home/m/msham/work_site/public_html/static'
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [
+    os.path.join(DINASTIA_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-fieldqwerty123

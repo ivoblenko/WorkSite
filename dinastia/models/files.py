@@ -5,7 +5,7 @@ import os
 
 
 def uploat_to(instance, filename):
-    return 'dinastia/static/files/patients/{0}/{1}'.format(instance.patient.id, filename)
+    return 'files/patients/{0}/{1}'.format(instance.patient.id, filename)
 
 
 class Files(models.Model):
@@ -22,9 +22,9 @@ class Files(models.Model):
     def filename(self):
         return os.path.basename(self.file.name)
 
-    @property
-    def url(self):
-        return 'files/patient/{0}/{1}'.format(self.patient.id, self.filename)
+    # @property
+    # def url(self):
+    #     return 'media/files/patient/{0}/{1}'.format(self.patient.id, self.filename)
 
     @classmethod
     def get_json_by_patient(cls, patient):
@@ -34,6 +34,6 @@ class Files(models.Model):
             json[file.id] = {
                 'id': file.id,
                 'name': file.filename,
-                'url': file.url
+                'url': file.file.url
             }
         return json

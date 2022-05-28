@@ -57,7 +57,7 @@
             {% if files_list|length > 0 %}
                 {% for file in files_list %}
                     <li file_id="{{ file.id }}">
-                        <a href="{% static file.url %}" target="_blank">{{ file.filename }}</a>
+                        <a href="{{ file.url }}" target="_blank">{{ file.filename }}</a>
                         <i class="fa fa-close fa-lg" style="color: red;cursor: pointer"></i>
                     </li>
                 {% endfor %}

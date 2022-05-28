@@ -2,6 +2,9 @@ from django.urls import path
 from .views import login
 from .views import menu
 from .views import inspections, patients
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+import WorkSite.settings as settings
 
 urlpatterns = [
     path('login', login.login, name='login'),
@@ -29,3 +32,6 @@ urlpatterns = [
     path('patient/get_patient_files', patients.get_patient_files, name='get_patient_files'),
     path('patient/delete_patient_files', patients.delete_patient_files, name='delete_patient_files'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
