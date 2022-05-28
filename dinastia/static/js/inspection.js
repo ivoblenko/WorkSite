@@ -56,25 +56,11 @@ $(document).ready(function ($) {
 
                 })
             },
-             error:  function(data){
-              $('#patient_files').html('<span>Файлы отсутствуют</span>');
-          }
+            error: function (data) {
+                $('#patient_files').html('<span>Файлы отсутствуют</span>');
+            }
         })
     })
-
-    $(".datepicker").datepicker({
-        language: "ru-RU",
-        format: 'yyyy-mm-dd',
-        days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-        daysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-        daysMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-        months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-        monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-        weekStart: 1,
-        startView: 0,
-        yearFirst: false,
-        yearSuffix: ''
-    });
 
     $('.fa-close').click(function () {
         let parent = this.parentNode;

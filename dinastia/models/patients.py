@@ -8,11 +8,11 @@ class Patients(models.Model):
     patronymic = models.CharField(max_length=200, verbose_name="Отчество")
     phone = models.PositiveBigIntegerField(null=True, blank=True, verbose_name="Номер телефона")
     dob = models.DateField(null=True, blank=True, verbose_name="Дата рождения")
-    sex = models.PositiveSmallIntegerField(null=True)
-    snils = models.PositiveIntegerField(null=True)
-    permanent_address = models.TextField(null=True)
-    registration_address = models.TextField(null=True)
-    contact_person = models.CharField(max_length=200, null=True)
+    sex = models.PositiveSmallIntegerField(null=True, blank=True)
+    snils = models.PositiveIntegerField(null=True, blank=True)
+    permanent_address = models.TextField(null=True, blank=True)
+    registration_address = models.TextField(null=True, blank=True)
+    contact_person = models.CharField(max_length=200, null=True, blank=True)
     contact_person_phone = models.PositiveBigIntegerField(null=True, blank=True)
 
     class Meta:

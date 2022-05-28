@@ -8,7 +8,7 @@ class Staffs(models.Model):
     name = models.CharField(max_length=200)
     patronymic = models.CharField(max_length=200)
     staff_type = models.ForeignKey(StaffTypes, on_delete=models.CASCADE)
-    department = models.ForeignKey(Departments, on_delete=models.CASCADE)
+    department = models.ForeignKey(Departments, on_delete=models.CASCADE, null=True)
 
     class Meta:
         app_label = 'dinastia'
