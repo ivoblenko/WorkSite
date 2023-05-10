@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from .models.services import Services
 from .models.staffs import Staffs
 from .models.departments import Departments
 from .models.staff_types import StaffTypes
@@ -38,3 +40,4 @@ admin.site.register(Departments)
 admin.site.register(StaffTypes)
 admin.site.register(Users, CustomUserAdmin)
 admin.site.register(Inspections)
+admin.site.register(Services)

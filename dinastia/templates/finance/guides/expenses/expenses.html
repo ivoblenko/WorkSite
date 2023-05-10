@@ -1,0 +1,21 @@
+{% extends '../../../base/table.html' %}
+
+
+{% block header %}
+    Расходы
+{% endblock %}
+
+{% block back_button_url %}
+    '{% url 'finance_guides_menu' %}'
+{% endblock %}
+
+{% block add_button %}
+    <button class="button"
+            onclick="document.location='{% url 'expense_new' %}'">
+        Добавить расходы
+    </button>
+{% endblock %}
+
+{% block table_url %}
+    '{% url 'get_expenses_table' %}'
+{% endblock %}

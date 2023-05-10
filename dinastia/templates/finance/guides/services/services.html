@@ -1,0 +1,22 @@
+{% extends '../../../base/table.html' %}
+
+
+{% block header %}
+    Услуги
+{% endblock %}
+
+
+{% block back_button_url %}
+    '{% url 'finance_guides_menu' %}'
+{% endblock %}
+
+{% block add_button %}
+    <button class="button"
+            onclick="document.location='{% url 'service_new' %}'">
+        Добавить услугу
+    </button>
+{% endblock %}
+
+{% block table_url %}
+    '{% url 'get_services_table' %}'
+{% endblock %}

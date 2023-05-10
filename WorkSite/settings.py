@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'WorkSite.wsgi.application'
+WSGI_APPLICATION = 'WorkSite.passenger_wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -117,6 +117,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+DEFAULT_CHARSET = 'utf-8'
 
 # MEDIA_ROOT = '/home/m/msham/work_site/public_html/media'
 MEDIA_ROOT = os.path.join(DINASTIA_DIR, 'media')

@@ -1,0 +1,33 @@
+{% extends '../../../base/base.html' %}
+
+
+{% block header %}
+    Редактирование категорий услуг
+{% endblock %}
+
+{% block content %}
+    {{ form.media }}
+
+    <button class="button" onclick="document.location='{% url 'service_categories' %}'">Назад</button>
+    <form method="post">
+        {% csrf_token %}
+        <br>
+
+        <div class="row" style="justify-content: center">
+
+
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.name }}
+                    <label for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
+                </div>
+            </div>
+
+
+        </div>
+
+        <br>
+        <input align="center" class="button submit_button" type="submit" value="Сохранить">
+    </form>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends '../../base/base.html' %}
+
+
+{% block header %}
+    Оказанные услуги
+{% endblock %}
+
+{% block content %}
+    {{ form.media }}
+
+    <button class="button" onclick="document.location='{% url 'finance_menu' %}'">Назад</button>
+    <form method="post">
+        {% csrf_token %}
+        <br>
+
+        <div class="row" style="justify-content: center">
+
+
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.patient }}
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="text-field text-field_floating-2 col">
+                    {{ form.services }}
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <input align="center" class="button submit_button" type="submit" value="Сохранить">
+    </form>
+
+{% endblock %}

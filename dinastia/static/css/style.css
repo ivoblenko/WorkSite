@@ -256,3 +256,13 @@ header h2 {
     justify-content: center;
     float: none !important;
 }
+
+.container-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.my-form-row {
+    margin-top: 25%;
+}

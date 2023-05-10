@@ -22,9 +22,32 @@
                 $('#datatable'),
                 {% block table_url %}'{% url 'inspections_table_get' %}'{% endblock %},
 
-        )
-            ;
+                {
+                    {% if row_grouping == True %}
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({page: 'current'}).nodes();
+                            var last = null;
+
+                            api
+                                .column({{ group_column }}, {page: 'current'})
+                                .data()
+                                .each(function (group, i) {
+                                    if (last !== group) {
+                                        $(rows)
+                                            .eq(i)
+                                            .before('<tr class="group"><td colspan="{{ columns_count }}">' + group + '</td></tr>');
+
+                                        last = group;
+                                    }
+                                });
+                        },
+                    {% endif %}
+                }
+            );
         });
+
+
     </script>
 {% endblock %}
 
@@ -37,11 +60,16 @@
 {% endblock %}
 
 {% block content %}
-    <button class="button" onclick="document.location={% block back_button_url %}'{% url 'main_menu' %}'{% endblock %}">
-        Назад
-    </button>
-    <br>
-    <br>
+    <div class="container-buttons">
+        <button class="button"
+                onclick="document.location={% block back_button_url %}'{% url 'main_menu' %}'{% endblock %}">
+            Назад
+        </button>
+
+        {% block add_button %}
+        {% endblock %}
+
+    </div>
     <div class="table-responsive">
         <table style="text-align: center; font-size: 18px;" id="datatable" width="100%"
                class="table table-striped table-bordered dt-responsive compact nowrap">

@@ -1,0 +1,36 @@
+{% extends '../../base/base.html' %}
+
+{% block header %}
+    Новые осмотры
+{% endblock %}
+
+{% block content %}
+
+    <div class="menu row center_objects">
+        <div class="col">
+            <button class="menu_button row" onclick="document.location='{% url 'services' %}'">
+                Список услуг
+            </button>
+            <br>
+
+            <button class="menu_button row" onclick="document.location='{% url 'service_categories' %}'">
+                Список категорий услуг
+            </button>
+            <br>
+
+            <button class="menu_button row" onclick="document.location='{% url 'cash_receipts' %}'">
+                Список денежных потсуплений
+            </button>
+            <br>
+
+            <button class="menu_button row" onclick="document.location='{% url 'expenses' %}'">
+                Список расходов
+            </button>
+            <br>
+
+            <button class="menu_button row" onclick="document.location='{% url 'finance_menu' %}'">
+                Назад
+            </button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends '../../../base/base.html' %}
+
+
+{% block header %}
+    Редактирование услуги
+{% endblock %}
+
+{% block content %}
+    {{ form.media }}
+
+        <button class="button" onclick="document.location='{% url 'services' %}'">Назад</button>
+
+        <form method="post">
+            {% csrf_token %}
+            <br>
+
+            <div class="row my-form-row">
+                <div class="col">
+                    <div class="text-field text-field_floating-2">
+                        {{ form.code }}
+                        <label for="{{ form.code.auto_id }}">{{ form.code.label }}</label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.name }}
+                        <label for="{{ form.name.auto_id }}">{{ form.name.label }}</label>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.price }}
+                        <label for="{{ form.price.auto_id }}">{{ form.price.label }}</label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="text-field text-field_floating-2 col">
+                        {{ form.conditional_unit_of_labor }}
+                        <label for="{{ form.conditional_unit_of_labor.auto_id }}">{{ form.conditional_unit_of_labor.label }}</label>
+                    </div>
+                </div>
+
+                <div class="col" style="margin: auto; text-align: center;">
+                    {{ form.category.label_tag }} {{ form.category }}
+                </div>
+
+                <div class="col" style="margin: auto; text-align: center;">
+                    {{ form.external.label_tag }} {{ form.external }}
+                </div>
+
+            </div>
+
+            <br>
+            <input align="center" class="button submit_button" type="submit" value="Сохранить">
+        </form>
+    </div>
+
+{% endblock %}
